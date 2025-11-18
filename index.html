@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Корочки.есть - Портал дополнительного образования</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container header-content">
+        <a href="#" class="logo">Корочки<span>.есть</span></a>
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+          <ul id="nav-menu"></ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div id="home-page" class="page active">
+        <div class="hero">
+          <h1>Образование, которое меняет жизнь</h1>
+          <p>
+            Получите востребованную профессию с гарантией трудоустройства.
+            Обучайтесь у лучших экспертов отрасли.
+          </p>
+          <button class="btn" onclick="showPage('courses-page')">
+            Смотреть курсы
+          </button>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-text">Выпускников</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">150+</div>
+            <div class="stat-text">Преподавателей</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">95%</div>
+            <div class="stat-text">Трудоустраиваются</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5 лет</div>
+            <div class="stat-text">На рынке</div>
+          </div>
+        </div>
+
+        <h2>Почему выбирают нас?</h2>
+        <div class="features">
+          <div class="feature-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Диплом гос. образца</h3>
+            <p>
+              Все наши выпускники получают официальные документы об образовании
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-briefcase"></i>
+            <h3>Трудоустройство</h3>
+            <p>Помогаем с поиском работы и подготовкой к собеседованиям</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-users"></i>
+            <h3>Сообщество</h3>
+            <p>Присоединяйтесь к нашему сообществу профессионалов</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="login-page" class="page">
+        <div class="form-container">
+          <h2>Вход в систему</h2>
+          <div
+            id="login-error"
+            class="alert alert-error"
+            style="display: none"
+          ></div>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-username">Логин</label>
+              <input type="text" id="login-username" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Пароль</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <button type="submit" class="btn btn-block">Войти</button>
+          </form>
+          <div class="text-center mt-2">
+            <button
+              type="button"
+              class="link-btn"
+              onclick="showPage('register-page')"
+            >
+              Еще не зарегистрированы? Регистрация
+            </button>
+          </div>
+          <div class="text-center mt-2">
+            <small
+              >Для входа в панель администратора: логин "Admin", пароль
+              "KorokNET"</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div id="register-page" class="page">
+        <div class="form-container">
+          <h2>Регистрация</h2>
+          <div
+            id="register-error"
+            class="alert alert-error"
+            style="display: none"
+          ></div>
+          <div
+            id="register-success"
+            class="alert alert-success"
+            style="display: none"
+          ></div>
+          <form id="register-form">
+            <div class="form-group">
+              <label for="reg-username"
+                >Логин (латиница и цифры, не менее 6 символов)</label
+              >
+              <input type="text" id="reg-username" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-password">Пароль (минимум 8 символов)</label>
+              <input type="password" id="reg-password" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-fio">ФИО (кириллица и пробелы)</label>
+              <input type="text" id="reg-fio" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-phone">Телефон (формат: 8(XXX)XXX-XX-XX)</label>
+              <input
+                type="text"
+                id="reg-phone"
+                placeholder="8(XXX)XXX-XX-XX"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Адрес электронной почты</label>
+              <input type="email" id="reg-email" required />
+            </div>
+            <button type="submit" class="btn btn-block">
+              Создать пользователя
+            </button>
+          </form>
+          <div class="text-center mt-2">
+            <button
+              type="button"
+              class="link-btn"
+              onclick="showPage('login-page')"
+            >
+              Уже зарегистрированы? Вход
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="applications-page" class="page">
+        <h2>Мои заявки на обучение</h2>
+        <div id="user-applications"></div>
+      </div>
+
+      <div id="create-application-page" class="page">
+        <div class="form-container">
+          <h2>Подача заявки на обучение</h2>
+          <div
+            id="application-error"
+            class="alert alert-error"
+            style="display: none"
+          ></div>
+          <div
+            id="application-success"
+            class="alert alert-success"
+            style="display: none"
+          ></div>
+          <form id="application-form">
+            <div class="form-group">
+              <label for="course-select">Выберите курс</label>
+              <select id="course-select" required>
+                <option value="">-- Выберите курс --</option>
+                <option value="Веб-разработка" data-price="25000">
+                  Веб-разработка - 25,000 ₽
+                </option>
+                <option value="Графический дизайн" data-price="18000">
+                  Графический дизайн - 18,000 ₽
+                </option>
+                <option value="Digital-маркетинг" data-price="22000">
+                  Digital-маркетинг - 22,000 ₽
+                </option>
+                <option value="Анализ данных" data-price="28000">
+                  Анализ данных - 28,000 ₽
+                </option>
+                <option value="Английский для IT" data-price="15000">
+                  Английский для IT - 15,000 ₽
+                </option>
+                <option value="Управление проектами" data-price="20000">
+                  Управление проектами - 20,000 ₽
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>План обучения</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input
+                    type="radio"
+                    id="basic-plan"
+                    name="plan"
+                    value="Базовый"
+                    checked
+                  />
+                  <i class="fas fa-star radio-icon"></i>
+                  <label for="basic-plan">
+                    <strong>Базовый</strong><br />
+                    <small
+                      >Доступ к материалам, проверка заданий, сертификат</small
+                    >
+                  </label>
+                </div>
+                <div class="radio-option">
+                  <input
+                    type="radio"
+                    id="pro-plan"
+                    name="plan"
+                    value="Профессиональный"
+                  />
+                  <i class="fas fa-crown radio-icon"></i>
+                  <label for="pro-plan">
+                    <strong>Профессиональный</strong><br />
+                    <small
+                      >Все из Базового + личный куратор, карьерные консультации,
+                      диплом</small
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Стоимость обучения</label>
+              <div class="price-summary">
+                <div class="price-item">
+                  <span>Стоимость курса:</span>
+                  <span id="course-price">0 ₽</span>
+                </div>
+                <div class="price-item">
+                  <span>Надбавка за план:</span>
+                  <span id="plan-surcharge">0 ₽</span>
+                </div>
+                <div class="price-total">
+                  <span>Итого к оплате:</span>
+                  <span id="total-price">0 ₽</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="start-date">Желаемая дата начала обучения</label>
+              <input type="date" id="start-date" required />
+            </div>
+
+            <div class="form-group">
+              <label>Способ оплаты</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input
+                    type="radio"
+                    id="cash"
+                    name="payment"
+                    value="наличными"
+                    checked
+                  />
+                  <i class="fas fa-money-bill-wave payment-icon"></i>
+                  <label for="cash">Наличными</label>
+                </div>
+                <div class="radio-option">
+                  <input
+                    type="radio"
+                    id="transfer"
+                    name="payment"
+                    value="переводом по номеру телефона"
+                  />
+                  <i class="fas fa-mobile-alt payment-icon"></i>
+                  <label for="transfer">Переводом по номеру телефона</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">
+              Отправить заявку
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div id="admin-page" class="page">
+        <h2>Панель администратора - Все заявки</h2>
+        <div id="admin-applications"></div>
+      </div>
+
+      <div id="courses-page" class="page">
+        <h2>Наши курсы</h2>
+        <p>
+          Выберите направление, которое вас интересует, и начните свой путь к
+          новой профессии!
+        </p>
+
+        <div class="courses-grid">
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://i.pinimg.com/originals/d9/3e/02/d93e02db0115f63d845b8347a1e9535d.jpg');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">IT</span>
+              <h3 class="course-title">Веб-разработка</h3>
+              <p>
+                Станьте full-stack разработчиком с нуля. Изучите HTML, CSS,
+                JavaScript и фреймворки.
+              </p>
+              <div class="course-info">
+                <span>6 месяцев</span>
+                <span>25,000 ₽</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://learn.g2.com/hubfs/iStock-1191609321%20%281%29.jpg');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">Дизайн</span>
+              <h3 class="course-title">Графический дизайн</h3>
+              <p>
+                Освойте Adobe Photoshop, Illustrator и создавайте потрясающие
+                визуальные проекты.
+              </p>
+              <div class="course-info">
+                <span>4 месяца</span>
+                <span>18,000 ₽</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://adpass.ru/wp-content/uploads/2025/04/image-b431b7a2-fe08-4175-8ea7-d70f464c5c01-1176x588.jpg');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">Маркетинг</span>
+              <h3 class="course-title">Digital-маркетинг</h3>
+              <p>
+                Научитесь продвижению в интернете: SMM, контекстная реклама, SEO
+                и аналитика.
+              </p>
+              <div class="course-info">
+                <span>5 месяцев</span>
+                <span>22,000 ₽</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://media2.dev.to/dynamic/image/width=1000,height=500,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fgt5kw6ay8iljfw5lw47y.png');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">Аналитика</span>
+              <h3 class="course-title">Анализ данных</h3>
+              <p>
+                Изучите Python, SQL и визуализацию данных для принятия
+                бизнес-решений.
+              </p>
+              <div class="course-info">
+                <span>7 месяцев</span>
+                <span>28,000 ₽</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://avatars.mds.yandex.net/i?id=99de500ecb237bf1f08838e1ea450cb6_l-4112653-images-thumbs&n=13');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">Языки</span>
+              <h3 class="course-title">Английский для IT</h3>
+              <p>
+                Специализированный курс английского для работы в международных
+                IT-компаниях.
+              </p>
+              <div class="course-info">
+                <span>3 месяца</span>
+                <span>15,000 ₽</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div
+              class="course-image"
+              style="
+                background-image: url('https://avatars.mds.yandex.net/i?id=f6205685b6489a4355df01a458cc121f_l-9269009-images-thumbs&n=13');
+              "
+            ></div>
+            <div class="course-content">
+              <span class="course-category">Менеджмент</span>
+              <h3 class="course-title">Управление проектами</h3>
+              <p>
+                Освойте Agile, Scrum и другие методологии управления
+                IT-проектами.
+              </p>
+              <div class="course-info">
+                <span>4 месяца</span>
+                <span>20,000 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="about-page" class="page">
+        <h2>О нас</h2>
+
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Наша миссия</h3>
+            <p>
+              Мы верим, что качественное образование должно быть доступно
+              каждому. Наша платформа объединяет лучших преподавателей и
+              мотивированных студентов, создавая уникальную образовательную
+              экосистему.
+            </p>
+
+            <h3>Наша история</h3>
+            <p>
+              Основанная в 2018 году, платформа «Корочки.есть» начала свой путь
+              с небольших онлайн-курсов по программированию. Сегодня мы
+              предлагаем более 50 направлений обучения и помогли тысячам людей
+              найти свое призвание.
+            </p>
+
+            <h3>Наши ценности</h3>
+            <ul>
+              <li>Качество образования - наш приоритет</li>
+              <li>Честность и прозрачность во всем</li>
+              <li>Постоянное развитие и инновации</li>
+              <li>Поддержка сообщества выпускников</li>
+            </ul>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://kartinki.pibig.info/uploads/posts/2023-08/1692210523_kartinki-pibig-info-p-kartinki-rabota-v-ofise-instagram-57.jpg"
+              alt="Наша команда"
+            />
+          </div>
+        </div>
+
+        <h3 style="margin-top: 3rem">Наша команда</h3>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="team-photo">
+              <i class="fas fa-user"></i>
+            </div>
+            <h4>Иван Петров</h4>
+            <p>Основатель и CEO</p>
+            <p>Эксперт в IT-образовании с 10-летним опытом</p>
+          </div>
+
+          <div class="team-member">
+            <div class="team-photo">
+              <i class="fas fa-user"></i>
+            </div>
+            <h4>Мария Сидорова</h4>
+            <p>Директор по обучению</p>
+            <p>Курирует разработку образовательных программ</p>
+          </div>
+
+          <div class="team-member">
+            <div class="team-photo">
+              <i class="fas fa-user"></i>
+            </div>
+            <h4>Алексей Козлов</h4>
+            <p>Главный методист</p>
+            <p>Отвечает за качество образовательного контента</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="contacts-page" class="page">
+        <h2>Контакты</h2>
+        <p>Свяжитесь с нами любым удобным способом - мы всегда рады помочь!</p>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h3>Адрес</h3>
+                <p>г. Москва, ул. Образовательная, д. 15</p>
+                <p>Бизнес-центр "Знание", 5 этаж</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h3>Телефон</h3>
+                <p>8 (800) 123-45-67</p>
+                <p>Бесплатный звонок по России</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h3>Email</h3>
+                <p>info@koro4ki-est.ru</p>
+                <p>По общим вопросам</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <h3>Время работы</h3>
+                <p>Пн-Пт: 9:00 - 20:00</p>
+                <p>Сб-Вс: 10:00 - 18:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <div class="form-container">
+              <h3>Напишите нам</h3>
+              <form id="contact-form">
+                <div class="form-group">
+                  <label for="contact-name">Ваше имя</label>
+                  <input type="text" id="contact-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email</label>
+                  <input type="email" id="contact-email" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-subject">Тема</label>
+                  <input type="text" id="contact-subject" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-message">Сообщение</label>
+                  <textarea id="contact-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-block">
+                  Отправить сообщение
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>О нас</h3>
+          <p>
+            Портал «Корочки.есть» - ведущая платформа дополнительного
+            профессионального образования. Мы помогаем тысячам людей получать
+            новые знания и навыки.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-vk"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Популярные курсы</h3>
+          <ul>
+            <li>
+              <a href="#" onclick="showPage('courses-page')">Веб-разработка</a>
+            </li>
+            <li>
+              <a href="#" onclick="showPage('courses-page')"
+                >Дизайн интерфейсов</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="showPage('courses-page')"
+                >Digital-маркетинг</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="showPage('courses-page')">Анализ данных</a>
+            </li>
+            <li>
+              <a href="#" onclick="showPage('courses-page')"
+                >Иностранные языки</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Планы обучения</h3>
+          <div class="plan-card">
+            <h4>Базовый</h4>
+            <div class="plan-price">+0 ₽</div>
+            <ul class="plan-features">
+              <li>Доступ к материалам</li>
+              <li>Проверка заданий</li>
+              <li>Сертификат</li>
+            </ul>
+          </div>
+          <div class="plan-card">
+            <h4>Профессиональный</h4>
+            <div class="plan-price">+7 000 ₽</div>
+            <ul class="plan-features">
+              <li>Все из Базового</li>
+              <li>Личный куратор</li>
+              <li>Карьерные консультации</li>
+              <li>Диплом</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Контакты</h3>
+          <div class="contact-info-footer">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>г. Москва, ул. Образовательная, д. 15</p>
+          </div>
+          <div class="contact-info-footer">
+            <i class="fas fa-phone"></i>
+            <p>8(800)123-45-67</p>
+          </div>
+          <div class="contact-info-footer">
+            <i class="fas fa-envelope"></i>
+            <p>info@koro4ki-est.ru</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Портал «Корочки.есть». Все права защищены.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
